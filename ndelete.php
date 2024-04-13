@@ -5,7 +5,7 @@ $username = "222014600";
 $password = "222014600";
 $dbname = "cms_ineza_eliane_222014600";
 
-// Create the connection
+// Create the connectiong
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
