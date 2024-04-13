@@ -1,0 +1,143 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <meta name="viewport">
+        <title>Clinic Management System</title>
+        <style>
+            
+            *, *::before, *::after {
+box-sizing: border-box;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Resetting default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #b6b1b8;
+}
+
+/* Full screen container styles */
+.full-screen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.logo{
+    height: 150px;
+    width: 300px;
+    
+    
+}
+
+/* Login container styles */
+.login-container {
+    width: 40%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* Login title styles */
+.login-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 50px;
+  font-style: italic;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(24, 24, 176);
+}
+
+.login-title h1 {
+  color: #333;
+}
+
+/* Form styles */
+.form {
+  max-width: 400px;
+  margin: 0 auto;
+  color: #419fc7;
+}
+
+/* Input group styles */
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Button styles */
+.login-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #d3ccd5;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: rgb(24, 24, 176);
+}
+
+/* Error message styles */
+.error-message {
+  color: red;
+  margin-top: 5px;
+}
+.labeltext{
+    font-weight: bold;
+     color:  rgb(24, 24, 176);
+}
+
+        </style>
+    </head>
+    <body>
+        <div class="full-screen-container">
+            <div class="login-container">
+                <h1 class="login-title">welcome to CMS</h1>
+                <img class="logo"  src="./images/logo.png" >
+                <form action="login.php" class="form" method="post">
+                    <div class="input-group">
+                        <label for="uname" class="labeltext">username</label>
+                        <input type="text" class="username" name="username" placeholder="Enter username" required>
+                   <span>  </span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password"class="labeltext">Password</label>
+                        <input type="password" class="password" name="password" placeholder="Enter Password" required>
+                        <span>  </span>
+                    </div>
+                    <button type="submit" class="login-button">Login</button>
+                    <div class="sing-up-word"><a href="registration.html">Create account</a></div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
