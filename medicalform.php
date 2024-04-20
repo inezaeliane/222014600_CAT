@@ -63,7 +63,7 @@ sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossor
         <label class="logo" >CMS <br>
             (Clinic Management System)</label>
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="home.html">Home</a></li>
             <li><a href="about.html">About us</a></li>
             <li><a href="contact.html">Contact us</a></li>
             <li class="dropdown">
@@ -74,19 +74,20 @@ sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossor
                     <li><a href="doctor.html">Doctor</a></li>
                     <li><a href="nurse.html">Nurse</a></li>
                     <li><a href="clinic.html">Clinic</a></li>
-                    <li><a href="appointment.html">Appointment</a></li>
-                    <li><a href="medical.html">Medical description</a></li>
+                    <li><a href="appointmentform.php">Appointment</a></li>
+                    <li><a href="medicalform.php">Medical description</a></li>
                 </ul>
             </li>
             
             <li class="dropdown"><a href="table.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 View all  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Patient Records</a></li>
-                    <li><a href="#">Doctor Records</a></li>
-                    <li><a href="#">Nurse Records</a></li>
-                    <li><a href="#">Appointment Records</a></li>
-                    <li><a href="#">Medical description Records</a></li>
+                    <li><a href="patient.php">Patient Records</a></li>
+                    <li><a href="doctor.php">Doctor Records</a></li>
+                    <li><a href="nurse.php">Nurse Records</a></li>
+                    <li><a href="clinic.php">Clinic Records</a></li>
+                    <li><a href="appointment.php">Appointment Records</a></li>
+                    <li><a href="medical.php">Medical description Records</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -105,7 +106,7 @@ sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossor
 
     <div class="container">
         <h2>Medical History Form</h2>
-        <form action="submit_medical_history.php" method="POST">
+        <form action="medical.php" method="POST">
           <div class="form-group">
             <label for="patient_name">Patient Name:</label>
             <input type="text" id="patient_name" name="patient_name" required>
@@ -125,7 +126,13 @@ sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossor
           </div>
           <div class="form-group">
             <label for="blood_type">Blood Type:</label>
-            <input type="text" id="blood_type" name="blood_type" required>
+         <select type="text" id="blood_type" name="blood_type" required>
+            <option value="">Select</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="AB">AB</option>
+              <option value="O">O</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="allergies">Allergies:</label>
@@ -139,10 +146,101 @@ sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossor
             <label for="medications">Current Medications:</label>
             <textarea id="medications" name="medications"></textarea>
           </div>
+          
           <div class="form-group">
-            <label for="surgical_history">Surgical History:</label>
-            <textarea id="surgical_history" name="surgical_history"></textarea>
-          </div>
+        <label for="doctor_id">Select Doctor:</label>
+      <select name="doctor_id" id="doctor_id">
+          <?php
+          $servername = "localhost";
+          $username = "222014600";
+          $password = "222014600";
+          $dbname = "cms_ineza_eliane_222014600";
+          
+          // Create the connection
+          $conn = new mysqli($servername, $username, $password, $dbname);
+          // Establish database connection (assuming same connection as above)
+
+          // SQL query to fetch doctor IDs, first names, and last names from the doctor table
+          $sql = "SELECT id, firstname, lastname FROM doctor";
+          $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                echo "<option value='" . $row['id'] . "'>" . $row['firstname'] . " " . $row['lastname'] . "</option>";
+              }
+          } else {
+              echo "<option value=''>No doctors available</option>";
+          }
+
+          // Close connection (assuming same connection as above)
+          $conn->close();
+          ?>
+      </select><br><br>
+
+        </div>
+        <div class="form-group">
+        <label for="nurse_id">Select Nurse:</label>
+      <select name="nurse_id" id="nurse_id">
+          <?php
+          $servername = "localhost";
+          $username = "222014600";
+          $password = "222014600";
+          $dbname = "cms_ineza_eliane_222014600";
+          
+          // Create the connection
+          $conn = new mysqli($servername, $username, $password, $dbname);
+          // Establish database connection (assuming same connection as above)
+
+          // SQL query to fetch doctor IDs, first names, and last names from the doctor table
+          $sql = "SELECT id, firstname, lastname FROM nurse";
+          $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                  echo "<option value='" . $row['id'] . "'>" . $row['firstname'] . " " . $row['lastname'] . "</option>";
+              }
+          } else {
+              echo "<option value=''>No Nurse  available</option>";
+          }
+
+          // Close connection (assuming same connection as above)
+          $conn->close();
+          ?>
+      </select><br><br>
+
+        </div>
+        <div class="form-group">
+        <label for="clinic_id">Select Clinic:</label>
+      <select name="clinic_id" id="clinic_id">
+          <?php
+          $servername = "localhost";
+          $username = "222014600";
+          $password = "222014600";
+          $dbname = "cms_ineza_eliane_222014600";
+          
+          // Create the connection
+          $conn = new mysqli($servername, $username, $password, $dbname);
+          // Establish database connection (assuming same connection as above)
+
+          // SQL query to fetch clinic IDs and names from the clinic table
+          $sql = "SELECT ID, ClinicName FROM clinic";
+          $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                  echo "<option value='" . $row['ID'] . "'>" . $row['ClinicName'] . "</option>";
+              }
+          } else {
+              echo "<option value=''>No clinics available</option>";
+          }
+
+          // Close connection (assuming same connection as above)
+          $conn->close();
+          ?>
+      </select><br><br>
+
+        </div>
+
           <input type="submit" value="Submit">
         </form>
       </div>
@@ -150,7 +248,7 @@ sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossor
 </section><br><br><br>
     <footer>
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="home.html">Home</a></li>
             <li><a href="about.html">About us</a></li>
             <li><a href="contact.html">Contact us</a></li>
             

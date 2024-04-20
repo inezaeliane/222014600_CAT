@@ -85,9 +85,15 @@ $result = $conn->query($sql_select);
             </div>';
         }
         ?>
+       
+</form>
+
         <a href="patient.html" class="btn btn-success">Add New</a>
-    </div>
-    <br><br><br>
+    </div><br>
+    <form method="GET" action="">
+    <input type="text" name="search" placeholder="Search...">
+    <button type="submit" class="btn btn-primary">Search</button>
+    <br>
     <table id="dataTable" class="table table-hover text-center">
         <tr>
             <th>ID</th>
@@ -104,6 +110,21 @@ $result = $conn->query($sql_select);
             <th>Actions</th>
         </tr>
         <?php
+        // Selecting data from the database
+$sql_select = "SELECT * FROM patient";
+
+// Check if search form is submitted
+if (isset($_GET['search'])) {
+    $search = $_GET['search'];
+    // Add search condition to SQL query
+    $sql_select .= " WHERE Firstname LIKE '%$search%' OR Lastname LIKE '%$search%' OR Email LIKE '%$search%' 
+    OR PhoneNumber LIKE '%$search%' OR DateOfBirth LIKE '%$search%' OR Gender LIKE '%$search%' 
+    OR MedicalInsurance LIKE '%$search%' OR Country LIKE '%$search%' OR Province LIKE '%$search%'
+     OR District LIKE '%$search%'";
+}
+
+$result = $conn->query($sql_select);
+
         // Output data of each row
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {

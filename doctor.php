@@ -32,7 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $specialisation = $_POST['specialization'];
     $qualification = $_POST['qualification'];
     $experience = $_POST['experience'];
-   
 
     if ($stmt->execute()) {
         echo "New record has been added successfully";
@@ -41,17 +40,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $stmt->close();
 }
+
 // Selecting data from the database
 $sql_select = "SELECT * FROM doctor";
-$result = $conn->query($sql_select);
 
+// Check if search form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['search'])) {
+    $search = $_GET['search'];
+    // Add search condition to SQL query
+    $sql_select .= " WHERE FirstName LIKE '%$search%' OR LastName LIKE '%$search%' OR Email LIKE '%$search%' OR PhoneNumber LIKE '%$search%' OR Specialization LIKE '%$search%' OR Qualification LIKE '%$search%' OR ExperienceYears LIKE '%$search%'";
+}
+
+$result = $conn->query($sql_select);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> clinic maanagement system</title>
+    <title> Clinic Management System</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -85,7 +92,12 @@ $result = $conn->query($sql_select);
         ?>
         <a href="doctor.html" class="btn btn-success">Add New</a>
     </div>
-    <br><br><br>
+    <br>
+    <form method="GET" action="">
+        <input type="text" name="search" placeholder="Search...">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
     <table id="dataTable" class="table table-hover text-center">
         <tr>
             <th>ID</th>
@@ -96,7 +108,7 @@ $result = $conn->query($sql_select);
             <th>Specialization</th>
             <th>Qualification</th>
             <th>Experience (years)</th>
-             <th>Actions</th>
+            <th>Actions</th>
         </tr>
         <?php
         // Output data of each row
@@ -111,7 +123,7 @@ $result = $conn->query($sql_select);
                 echo "<td>" . $row["Specialization"] . "</td>";
                 echo "<td>" . $row["Qualification"] . "</td>";
                 echo "<td>" . $row["ExperienceYears"] . "</td>";
-                
+
                 echo "<td>";
                 echo "<a href='dupdate.php?updateID=" . $row['ID'] . "'><i class='fas fa-edit'></i></a>";
                 echo "<a href='ddelete.php?ID=" . $row['ID'] . "'><i class='fas fa-trash'></i></a>";
@@ -119,7 +131,7 @@ $result = $conn->query($sql_select);
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='7'>No data found</td></tr>";
+            echo "<tr><td colspan='9'>No data found</td></tr>";
         }
         ?>
     </table>

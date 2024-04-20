@@ -17,7 +17,7 @@ $sql = "SELECT *FROM user_information WHERE Username='$uname' AND Password='$pas
 $result =$conn->query($sql);
 if ($result->num_rows >0) {
   // echo "successfully loggedin!";
-  header("Location:index.html");
+  header("Location:home.html");
       exit();
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
