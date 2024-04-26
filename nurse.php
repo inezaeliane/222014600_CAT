@@ -72,6 +72,50 @@ $result = $conn->query($sql_select);
     </style>
 </head>
 <body>
+<nav>
+        <label class="logo" >CMS <br>
+            (Clinic Management System)</label>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    Add new <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="patient.html">Patient</a></li>
+                    <li><a href="doctor.html">Doctor</a></li>
+                    <li><a href="nurse.html">Nurse</a></li>
+                    <li><a href="clinic.html">Clinic</a></li>
+                    <li><a href="appointmentform.php">Appointment</a></li>
+                    <li><a href="medical.html">Medical description</a></li>
+                </ul>
+            </li>
+            
+            <li class="dropdown"><a href="table.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                View all  <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="patient.php">Patient Records</a></li>
+                    <li><a href="doctor.php">Doctor Records</a></li>
+                    <li><a href="nurse.php">Nurse Records</a></li>
+                    <li><a href="clinic.php">Clinic  Records</a></li>
+                    <li><a href="appointment.php">Appointment Records</a></li>
+                    <li><a href="medical.php">Medical description Records</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    Manage Account <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="registration.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </nav>
     <h2>Nurse Records</h2>
     <div class="container">
         <?php
@@ -140,6 +184,15 @@ $result = $conn->query($sql_select);
     <!-- Include Bootstrap and Font Awesome JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <footer>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+            
+        </ul>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
 </body>
 </html>
 

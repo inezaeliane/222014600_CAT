@@ -230,7 +230,7 @@ $result = $conn->query($sql_select);
 </section><br><br><br>
     <footer>
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="home.html">Home</a></li>
             <li><a href="about.html">About us</a></li>
             <li><a href="contact.html">Contact us</a></li>
             
