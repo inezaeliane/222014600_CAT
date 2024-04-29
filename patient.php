@@ -1,3 +1,4 @@
+
 <?php
 // Connection
 $servername = "localhost";
@@ -48,17 +49,29 @@ $sql_select = "SELECT * FROM patient";
 $result = $conn->query($sql_select);
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Patient Records</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <style>
-        table {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="
+sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css
+" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="
+sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<style>
+    /* Add your CSS styles here */
+    table {
             width: 100%;
             border-collapse: collapse;
         }
@@ -72,31 +85,20 @@ $result = $conn->query($sql_select);
         th {
             background-color: #f2f2f2;
         }
-    </style>
+  </style>
 </head>
 <body>
-<nav>
+    <nav>
         <label class="logo" >CMS <br>
             (Clinic Management System)</label>
         <ul>
             <li><a href="home.html">Home</a></li>
             <li><a href="about.html">About us</a></li>
             <li><a href="contact.html">Contact us</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    Add new <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="patient.html">Patient</a></li>
-                    <li><a href="doctor.html">Doctor</a></li>
-                    <li><a href="nurse.html">Nurse</a></li>
-                    <li><a href="clinic.html">Clinic</a></li>
-                    <li><a href="appointmentform.php">Appointment</a></li>
-                    <li><a href="medical.html">Medical description</a></li>
-                </ul>
-            </li>
             
-            <li class="dropdown"><a href="table.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                View all  <span class="caret"></span></a>
+            
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Services  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="patient.php">Patient Records</a></li>
                     <li><a href="doctor.php">Doctor Records</a></li>
@@ -108,7 +110,7 @@ $result = $conn->query($sql_select);
             </li>
             <li class="dropdown">
                 <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    Manage Account <span class="caret"></span>
+                    Settings <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="registration.html">Register</a></li>
@@ -119,6 +121,7 @@ $result = $conn->query($sql_select);
             
         </ul>
     </nav>
+    
     <h2>Patient Records</h2>
     <div class="container">
         <?php
@@ -198,6 +201,8 @@ $result = $conn->query($sql_select);
     <!-- Include Bootstrap and Font Awesome JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+</section><br><br><br>
     <footer>
         <ul>
             <li><a href="home.html">Home</a></li>
@@ -208,10 +213,4 @@ $result = $conn->query($sql_select);
         <p>&copy; 2024 My Website. All rights reserved.</p>
     </footer>
 </body>
-
-</html>
-
-<?php
-// Close connection
-$conn->close();
-?>
+</html> 

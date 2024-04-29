@@ -57,6 +57,13 @@ sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossor
       background-color: #45a049;
     }
   </style>
+      <!-- JavaScript validation and content load for insert data-->
+      <script>
+            function confirmInsert() {
+                return confirm('Are you sure you want to insert this record?');
+            }
+        </script>
+
 </head>
 <body>
     <nav>
@@ -66,32 +73,21 @@ sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossor
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About us</a></li>
             <li><a href="contact.html">Contact us</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    Add new <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="patient.html">Patient</a></li>
-                    <li><a href="doctor.html">Doctor</a></li>
-                    <li><a href="nurse.html">Nurse</a></li>
-                    <li><a href="clinic.html">Clinic</a></li>
-                    <li><a href="appointment.html">Appointment</a></li>
-                    <li><a href="medicalform.php">Medical description</a></li>
-                </ul>
-            </li>
             
-            <li class="dropdown"><a href="table.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                View all  <span class="caret"></span></a>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Services  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Patient Records</a></li>
-                    <li><a href="#">Doctor Records</a></li>
-                    <li><a href="#">Nurse Records</a></li>
-                    <li><a href="#">Appointment Records</a></li>
-                    <li><a href="#">Medical description Records</a></li>
+                <li><a href="patient.php">Patient Records</a></li>
+                    <li><a href="doctor.php">Doctor Records</a></li>
+                    <li><a href="nurse.php">Nurse Records</a></li>
+                    <li><a href="clinic.php">Clinic  Records</a></li>
+                    <li><a href="appointment.php">Appointment Records</a></li>
+                    <li><a href="medical.php">Medical description Records</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    Manage Account <span class="caret"></span>
+                    Settings <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="registration.html">Register</a></li>
