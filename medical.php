@@ -1,16 +1,6 @@
 <?php
 // Connection
-$servername = "localhost";
-$username = "222014600";
-$password = "222014600";
-$dbname = "cms_ineza_eliane_222014600";
-
-// Create the connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+include('database_connection.php');
 // Insert data if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Prepare and bind the parameters
@@ -156,16 +146,7 @@ sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossor
         </tr>
         <?php
 // Connection
-$servername = "localhost";
-$username = "222014600";
-$password = "222014600";
-$dbname = "cms_ineza_eliane_222014600";
-
-// Create the connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include('database_connection.php');
 
 // Selecting data from the database
 $sql_select = "SELECT * FROM history";

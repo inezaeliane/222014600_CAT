@@ -1,14 +1,7 @@
 
 <?php
 // Connection details
-$servername = "localhost";
-$username = "222014600";
-$password = "222014600";
-$dbname = "cms_ineza_eliane_222014600";
-
-// Create the connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+include('database_connection.php');
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -194,14 +187,7 @@ $conn->close();
         <label for="doctor_id">Select Doctor:</label>
       <select name="doctor_id" id="doctor_id">
           <?php
-          $servername = "localhost";
-          $username = "222014600";
-          $password = "222014600";
-          $dbname = "cms_ineza_eliane_222014600";
-          
-          // Create the connection
-          $conn = new mysqli($servername, $username, $password, $dbname);
-          // Establish database connection (assuming same connection as above)
+          include('database_connection.php');
 
           // SQL query to fetch doctor IDs, first names, and last names from the doctor table
           $sql = "SELECT id, firstname, lastname FROM doctor";
@@ -225,14 +211,7 @@ $conn->close();
         <label for="nurse_id">Select Nurse:</label>
       <select name="nurse_id" id="nurse_id">
           <?php
-          $servername = "localhost";
-          $username = "222014600";
-          $password = "222014600";
-          $dbname = "cms_ineza_eliane_222014600";
-          
-          // Create the connection
-          $conn = new mysqli($servername, $username, $password, $dbname);
-          // Establish database connection (assuming same connection as above)
+ include('database_connection.php');
 
           // SQL query to fetch doctor IDs, first names, and last names from the doctor table
           $sql = "SELECT id, firstname, lastname FROM nurse";
@@ -256,14 +235,7 @@ $conn->close();
         <label for="clinic_id">Select Clinic:</label>
       <select name="clinic_id" id="clinic_id">
           <?php
-          $servername = "localhost";
-          $username = "222014600";
-          $password = "222014600";
-          $dbname = "cms_ineza_eliane_222014600";
-          
-          // Create the connection
-          $conn = new mysqli($servername, $username, $password, $dbname);
-          // Establish database connection (assuming same connection as above)
+          include('database_connection.php');
 
           // SQL query to fetch clinic IDs and names from the clinic table
           $sql = "SELECT ID, ClinicName FROM clinic";
