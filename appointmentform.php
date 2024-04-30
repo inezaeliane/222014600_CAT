@@ -16,7 +16,11 @@ sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossor
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="
 sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+<script>
+        function confirmInsert() {
+            return confirm('Are you sure you want to insert this record?');
+        }
+    </script>
 <style>
     /* Add your CSS styles here */
     body {
@@ -100,7 +104,7 @@ sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossor
     </nav>
     <div class="container">
       <h2>Appointment Form</h2>
-      <form action="appointment.php" method="POST">
+      <form action="appointment.php" method="POST" onsubmit="return confirmInsert();">
         
         
         <div class="form-group">

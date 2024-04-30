@@ -136,7 +136,7 @@ input[type="submit"]:hover {
         }
         ?>
         <h2>Update Patient Record</h2>
-        <form method="POST" action="">
+        <form method="POST" action=""onsubmit="return confirmUpdate();">
             <input type="hidden" name="id" value="<?php echo $row['ID']; ?>">
             <div class="form-group">
                 <label for="fname">First Name:</label>
@@ -200,5 +200,11 @@ input[type="submit"]:hover {
             </div>
         </form>
     </div>
+     <!-- Confirmation script -->
+     <script>
+        function confirmUpdate() {
+            return confirm('Are you sure you want to update this record?');
+        }
+    </script>
 </body>
 </html>

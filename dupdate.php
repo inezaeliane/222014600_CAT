@@ -125,7 +125,7 @@ $conn->close();
         }
         ?>
         <h2>Update Doctor Record</h2>
-        <form method="POST" action="">
+        <form method="POST" action="" onsubmit="return confirmUpdate();">
             <input type="hidden" name="id" value="<?php echo $row['ID']; ?>">
             <div class="form-group">
                 <label for="fname">First Name:</label>
@@ -173,5 +173,10 @@ $conn->close();
             </div>
         </form>
     </div>
+    <script>
+        function confirmUpdate() {
+            return confirm('Are you sure you want to update this record?');
+        }
+    </script>
 </body>
 </html>

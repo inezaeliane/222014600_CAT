@@ -1,4 +1,3 @@
-
 <?php
 // Connection details
 include('database_connection.php');
@@ -132,7 +131,7 @@ $conn->close();
         }
         ?>
         <h2>Update Nurse Record</h2>
-        <form method="POST" action="">
+        <form method="POST" action="" onsubmit="return confirmUpdate();">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <div class="form-group">
                 <label for="fname">First Name:</label>
@@ -167,10 +166,9 @@ $conn->close();
     </div>
 </body>
 </html>
-">
-            <input type="hidden" name="id" value="<?php echo $id; ?>">
-            <!-- Rest of the form -->
-        </form>
-    </div>
-</body>
-</html>
+
+<script>
+    function confirmUpdate() {
+        return confirm('Are you sure you want to update this record?');
+    }
+</script>

@@ -1,4 +1,3 @@
-
 <?php
 // Connection details
 include('database_connection.php');
@@ -14,12 +13,10 @@ if (isset($_GET['updateID']) && isset($_POST['submit'])) {
     $clinic = $_POST['clinic_id'];
     $doctor = $_POST['doctor_id'];
     $reason = $_POST['reason'];
-   
 
     // Prepare and execute the UPDATE statement
-    $stmt = $conn->prepare("UPDATE appointment SET AppointimentDate=?, AppointmentTime=?, Patient =?, Clinic=?, Doctor=?, ReasonAppointment=? WHERE ID=?");
-$stmt->bind_param("ssssssi", $date, $time, $patient, $clinic, $doctor,$reason, $id);
-
+    $stmt = $conn->prepare("UPDATE appointment SET AppointimentDate=?, AppointmentTime=?, Patient=?, Clinic=?, Doctor=?, ReasonAppointment=? WHERE ID=?");
+    $stmt->bind_param("ssssssi", $date, $time, $patient, $clinic, $doctor, $reason, $id);
 
     if ($stmt->execute()) {
         header('Location: appointment.php?msg=Record updated successfully');
@@ -39,8 +36,13 @@ if (isset($_GET['updateID'])) {
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
+        if (!$row) {
+            echo "Error fetching appointment data.";
+            exit(); // Terminate script
+        }
     } else {
         echo "No record found for ID: $id";
+        exit(); // Terminate script
     }
 }
 
@@ -49,10 +51,6 @@ $conn->close();
 
 <!DOCTYPE html>
 <html>
-<head>
-    <!-- Head content here -->
-</head>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -133,43 +131,43 @@ $conn->close();
         }
         ?>
         <h2>Update Appointment Record</h2>
-        <form method="POST" action="">
+        <form method="POST" action="" onsubmit="return confirmUpdate();">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             
             <div class="form-group">
-            <label for="appointment_date">Appointment Date:</label>
-            <input type="date" id="appointment_date" name="appointment_date" required>
-          </div>
-          <div class="form-group">
-            <label for="appointment_time">Appointment Time:</label>
-            <input type="time" id="appointment_time" name="appointment_time" required>
-          </div>
-          <div class="form-group">
-          <label for="patient_id">Select Patient:</label>
-        <select name="patient_id" id="patient_id">
-            <?php
-            // Establish database connection
-            include('database_connection.php');
+                <label for="appointment_date">Appointment Date:</label>
+                <input type="date" id="appointment_date" name="appointment_date" value="<?php echo $row['AppointimentDate']; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="appointment_time">Appointment Time:</label>
+                <input type="time" id="appointment_time" name="appointment_time" value="<?php echo $row['AppointmentTime']; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="patient_id">Select Patient:</label>
+                <select name="patient_id" id="patient_id">
+                    <?php
+                    // Establish database connection
+                    include('database_connection.php');
 
-            // SQL query to fetch patient names and IDs from the patient table
-            $sql = "SELECT id, firstname, lastname FROM patient";
-            $result = $conn->query($sql);
+                    // SQL query to fetch patient names and IDs from the patient table
+                    $sql = "SELECT id, firstname, lastname FROM patient";
+                    $result = $conn->query($sql);
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['id'] . "'>" . $row['firstname'] . " " . $row['lastname'] . "</option>";
-                }
-            } else {
-                echo "<option value=''>No patients available</option>";
-            }
+                    if ($result->num_rows > 0) {
+                        while ($patientRow = $result->fetch_assoc()) {
+                            $selected = ($patientRow['id'] == $row['Patient']) ? 'selected' : '';
+                            echo "<option value='" . $patientRow['id'] . "' $selected>" . $patientRow['firstname'] . " " . $patientRow['lastname'] . "</option>";
+                        }
+                    } else {
+                        echo "<option value=''>No patients available</option>";
+                    }
 
-            // Close connection
-            $conn->close();
-            ?>
-        </select><br><br>
-</div>
-
-          <div class="form-group">
+                    // Close connection
+                    $conn->close();
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
           <label for="doctor_id">Select Doctor:</label>
         <select name="doctor_id" id="doctor_id">
             <?php
@@ -216,22 +214,21 @@ include('database_connection.php');
         </select><br><br>
 
           </div>
+
           <div class="form-group">
-            <label for="reason">Reason for Appointment:</label>
-            <textarea id="reason" name="reason" required></textarea>
-          </div>
+    <label for="reason">Reason for Appointment:</label>
+    <textarea id="reason" name="reason" required><?php echo isset($row['ReasonAppointment']) ? $row['ReasonAppointment'] : ''; ?></textarea>
+   </div>
             <div class="form-group">
                 <input type="submit" name="submit" value="Update" class="btn btn-primary">
-                <a href="clinic.php" class="btn btn-secondary">Cancel</a>
+                <a href="appointment.php" class="btn btn-secondary">Cancel</a>
             </div>
         </form>
     </div>
-</body>
-</html>
-">
-            <input type="hidden" name="id" value="<?php echo $id; ?>">
-            <!-- Rest of the form -->
-        </form>
-    </div>
+    <script>
+        function confirmUpdate() {
+            return confirm('Are you sure you want to update this record?');
+        }
+    </script>
 </body>
 </html>

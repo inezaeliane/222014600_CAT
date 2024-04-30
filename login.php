@@ -1,7 +1,7 @@
 <?php
 include('database_connection.php');
 
-$uname = $_POST['username'];
+$uname = $_POST['username']; 
 $password = $_POST['password'];
 
 $sql = "SELECT *FROM user_information WHERE Username='$uname' AND Password='$password'";

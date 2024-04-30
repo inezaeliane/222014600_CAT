@@ -1,7 +1,7 @@
 
 <?php
-// Connection details
 include('database_connection.php');
+
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -23,12 +23,10 @@ if (isset($_GET['updateID']) && isset($_POST['submit'])) {
     $doctor = $_POST['doctor_id'];
     $nurse = $_POST['nurse_id'];
     $clinic = $_POST['clinic_id'];
-   
 
-    // Prepare and execute the UPDATE statement
-    $stmt = $conn->prepare("UPDATE history SET PatientName=?, DateOfBirth=?, Gender =?, BloodType=?, Allerigies=?, MedicalCondition=?,CurrentMedication=?,	Doctor=?,Nurse=?,	Clinic =? WHERE ID=?");
-$stmt->bind_param("ssssssssssi", $name, $dob, $gender, $type, $allerg,$condition,$medication,$doctor,$nurse,$clinic, $id);
-
+    // Prepare and execute the UPDATE statement using prepared statements
+    $stmt = $conn->prepare("UPDATE history SET PatientName=?, DateOfBirth=?, Gender=?, BloodType=?, Allerigies=?, MedicalCondition=?, CurrentMedication=?, Doctor=?, Nurse=?, Clinic=? WHERE ID=?");
+    $stmt->bind_param("ssssssssssi", $name, $dob, $gender, $type, $allerg, $condition, $medication, $doctor, $nurse, $clinic, $id);
 
     if ($stmt->execute()) {
         header('Location: medical.php?msg=Record updated successfully');
@@ -55,6 +53,7 @@ if (isset($_GET['updateID'])) {
 
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -142,7 +141,8 @@ $conn->close();
         }
         ?>
         <h2>Update Medical Record</h2>
-        <form action="medical.php" method="POST">
+        <form action="medical.php?updateID=<?php echo $id; ?>" method="POST" onsubmit="return confirmUpdate();">
+
         <div class="form-group">
             <label for="patient_name">Patient Name:</label>
             <input type="text" id="patient_name" name="patient_name" value="<?php echo $row['PatientName']; ?>" required>
@@ -264,5 +264,10 @@ $conn->close();
             <!-- Rest of the form -->
         </form>
     </div>
+    <script>
+        function confirmUpdate() {
+            return confirm('Are you sure you want to update this record?');
+        }
+    </script>
 </body>
 </html>

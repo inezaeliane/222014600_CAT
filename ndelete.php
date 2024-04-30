@@ -19,8 +19,24 @@ if(isset($_REQUEST['ID'])) {
 
     $stmt->close();
 } else {
-    echo "ID is not set.";
+    echo "click here to confirm";
 }
 
 $conn->close();
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Nurse Record</title>
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this record?");
+        }
+    </script>
+</head>
+<body>
+    <button onclick="if(confirmDelete()) { window.location.href = 'nurse.php?ID=<?php echo $_REQUEST['ID']; ?>&confirm=1'; }">Delete Record</button>
+</body>
+</html>

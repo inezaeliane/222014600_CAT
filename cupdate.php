@@ -1,4 +1,3 @@
-
 <?php
 // Connection details
 include('database_connection.php');
@@ -16,8 +15,7 @@ if (isset($_GET['updateID']) && isset($_POST['submit'])) {
 
     // Prepare and execute the UPDATE statement
     $stmt = $conn->prepare("UPDATE clinic SET ClinicName=?, Addresss=?, Type=?, PhoneNumber=?, Email=? WHERE ID=?");
-$stmt->bind_param("sssssi", $cname, $address, $type, $phone, $email, $id);
-
+    $stmt->bind_param("sssssi", $cname, $address, $type, $phone, $email, $id);
 
     if ($stmt->execute()) {
         header('Location: clinic.php?msg=Record updated successfully');
@@ -48,13 +46,14 @@ $conn->close();
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Head content here -->
-</head>
-
-<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clinic management system</title>
+    <title>Clinic Management System</title>
+    <script>
+        function confirmUpdate() {
+            return confirm('Are you sure you want to update this record?');
+        }
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <style>
         /* Add your CSS styles here */
@@ -117,7 +116,6 @@ $conn->close();
                 padding: 10px;
             }
         }
-
     </style>
 </head>
 <body>
@@ -131,40 +129,32 @@ $conn->close();
         }
         ?>
         <h2>Update Clinic Record</h2>
-        <form method="POST" action="">
+        <form method="POST" action="" onsubmit="return confirmUpdate();">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
-            
-            <label for="clinic_name">Clinic Name:</label>
-            <input type="text" id="clinic_name" name="clinic_name"value="<?php echo $row['ClinicName']; ?>" required>
-          </div>
-          <div class="form-group">
-            <label for="address">Address:</label>
-            <textarea id="address" name="address"value="<?php echo $row['Addresss']; ?>" required></textarea>
-          </div>
-          <div class="form-group">
-            <label for="type">Type:</label>
-            <input type="type" id="type" name="type"value="<?php echo $row['Type']; ?>" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="phone">Phone Number:</label>
-            <input type="text" id="phone" name="phone"value="<?php echo $row['PhoneNumber']; ?>" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email"value="<?php echo $row['Email']; ?>" required>
-          </div>
+            <div class="form-group">
+                <label for="clinic_name">Clinic Name:</label>
+                <input type="text" id="clinic_name" name="clinic_name" value="<?php echo $row['ClinicName']; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required><?php echo $row['Addresss']; ?></textarea>
+            </div>
+            <div class="form-group">
+                <label for="type">Type:</label>
+                <input type="text" id="type" name="type" value="<?php echo $row['Type']; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" value="<?php echo $row['PhoneNumber']; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<?php echo $row['Email']; ?>" required>
+            </div>
             <div class="form-group">
                 <input type="submit" name="submit" value="Update" class="btn btn-primary">
                 <a href="clinic.php" class="btn btn-secondary">Cancel</a>
             </div>
-        </form>
-    </div>
-</body>
-</html>
-">
-            <input type="hidden" name="id" value="<?php echo $id; ?>">
-            <!-- Rest of the form -->
         </form>
     </div>
 </body>

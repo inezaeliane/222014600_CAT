@@ -94,7 +94,7 @@ sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossor
     </nav>
     <div class="container">
         <h2>Doctor Information Form</h2>
-        <form action="doctor.php" method="POST">
+        <form action="doctor.php" method="POST" onsubmit="return confirmInsert();">
           <div class="form-group">
             <label for="fname">First Name:</label>
             <input type="text" id="fname" name="fname" required>
@@ -150,7 +150,13 @@ sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossor
             <li><a href="contact.html">Contact us</a></li>
             
         </ul>
-        <p>&copy; 2024 My Website. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+        <p>&copy;2024 My Website. All rights reserved.</p>
+      </footer>
+      <script>
+      function confirmInsert() {
+      return confirm('Are you sure you want to insert this record?');
+      }
+      </script>
+      
+      </body>
+      </html> 
